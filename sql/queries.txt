@@ -1,0 +1,12 @@
+
+/* Query for top20 artist with max number of albums in the market*/
+SELECT Artist.Name, COUNT(Album.AlbumId) FROM Artist JOIN Album ON Artist.ArtistId = Album.ArtistId GROUP BY Artist.Name  ORDER BY COUNT(Album.AlbumId) DESC LIMIT 20
+
+/* Query for top 10 customers spending customers */
+SELECT Customer.FirstName , Customer.LastName, SUM(Invoice.Total) FROM Customer JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId GROUP BY Customer.FirstName, Customer.LastName  ORDER BY SUM(Invoice.Total) DESC LIMIT 10
+
+/* Query for songs in number of songs in each playlist */
+SELECT Playlist.Name, COUNT(PlaylistTrack.TrackId) AS num_of_songs_in_playlist FROM Playlist JOIN PlaylistTrack ON Playlist.PlaylistId = PlaylistTrack.PlaylistId GROUP BY Playlist.Name ORDER BY COUNT(PlaylistTrack.TrackId) DESC
+
+/* total sales done by each support_rep */
+SELECT Customer.SupportRepId, SUM(Invoice.Total) FROM Customer JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId GROUP BY Customer.SupportRepId ORDER BY SUM(Invoice.Total) DESC
